@@ -4,7 +4,7 @@
 
 - kitty terminal from
   - `curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin`
-  - Docs: `https://sw.kovidgoyal.net/kitty/overview`
+  - [Docs](https://sw.kovidgoyal.net/kitty/overview)
 - zsh and ohmyzsh
   - `sudo apt install zsh`
   - `chsh -s $(which zsh)`
@@ -16,24 +16,27 @@
 - tmux from brew
   - to set config location: `tmux -f ~/.tmux.conf`
 - nvim from snap channel edge `sudo apt install nvim --channel=latest/edge --classic`
+  - fetch repo: `git clone git@github.com:benkalmus/nvim-config.git ~/.config/nvim`
 - trash-cli `sudo apt install trash-cli -y`
 - terminal file managers
-  - ranger `https://github.com/ranger/ranger` `sudo apt install ranger -y`
-  - lf `https://github.com/gokcehan/lf/releases`
+  - ranger [repo](https://github.com/ranger/ranger) `sudo apt install ranger -e`
+  - lf [lf](https://github.com/gokcehan/lf/releases)
 
 ## Optional
 
 - wireguard
+- asdf
 
 ## Set up
 
+After above have been created.
 Create symlinks:
 
 ```sh
 REPO_DIR=$( dirname $(pwd) )
-ln -s ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
 ln -s ${REPO_DIR}/.tmux.conf ~/.config/.tmux.conf
-ln -s ${REPO_DIR}/aliases.sh ~/.aliases
 ln -s ${REPO_DIR}/.zshrc ~/.zshrc
+ln -s ${REPO_DIR}/aliases.sh ~/.aliases
+ln -s ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
 
 ```
