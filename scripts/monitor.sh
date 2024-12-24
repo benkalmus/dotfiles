@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 
 function brt() {
-    if [[ ! -z $2 ]]; then
+    # if two args passed in, then call brt-one. Yes very confusing but convenient :/
+    if [[ -n $2 ]]; then
         brt-one "$1" "$2"
         return 0
     fi
@@ -10,8 +11,8 @@ function brt() {
         ddcutil --display 1 getvcp 10
         return 1
     fi
-    local brightness=${1:-50}
-    local monitors=$(ddcutil detect | grep -Po "Display \d" | wc -l)
+    local -r brightness=${1:-50}
+    local -r monitors=$(ddcutil detect | grep -Po "Display \d" | wc -l)
     for i in $(seq 1 "$monitors"); do
         echo "ddcutil --display $i setvcp 10 $brightness"
         echo "Current brightness:"
@@ -39,8 +40,8 @@ function contrast() {
         ddcutil --display 1 getvcp 12
         return 1
     fi
-    local contrast=${1:-50}
-    local monitors=$(ddcutil detect | grep -Po "Display \d" | wc -l)
+    local -r contrast=${1:-50}
+    local -r monitors=$(ddcutil detect | grep -Po "Display \d" | wc -l)
 
     for i in $(seq 1 "$monitors"); do
         echo "ddcutil --display $i setvcp 12 $contrast"
@@ -50,7 +51,7 @@ function contrast() {
 }
 
 function monitor-input-switch() {
-    local monitor=$1
+    local -r monitor=$1
     local source=$2
     local vcp_code="60"
     if [[ -z $1 ]]; then
