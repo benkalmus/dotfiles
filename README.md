@@ -40,3 +40,7 @@ ln -s ${REPO_DIR}/aliases.sh ~/.aliases
 ln -s ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
 
 ```
+
+# TODOs
+
+- Configure [stow](https://www.gnu.org/software/stow/manual/stow.html)
