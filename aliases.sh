@@ -3,7 +3,7 @@ alias icat="kitty +kitten icat"
 alias k="kitty +kitten"
 alias v="nvim"
 
-source "scripts/monitor.sh"
+source ".config/scripts/monitor.sh"
 
 ## ==================================================================
 ## old bash aliases
