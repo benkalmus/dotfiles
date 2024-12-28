@@ -132,6 +132,9 @@ if [[ -f "$HOME/.aliases" ]]; then
   source "$HOME/.aliases"
 fi
 
+# fix for kitty terminal
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 
 if [[ -f $HOME/.profile ]]; then
   source $HOME/.profile
