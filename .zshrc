@@ -131,6 +131,9 @@ bindkey "^[[B" history-beginning-search-forward
 if [[ -f "$HOME/.aliases" ]]; then
   source "$HOME/.aliases"
 fi
+if [[ -f "$HOME/.config/scripts/monitor.sh" ]]; then
+  source "$HOME/.config/scripts/monitor.sh"
+fi
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"

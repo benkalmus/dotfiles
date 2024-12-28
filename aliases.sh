@@ -3,13 +3,12 @@ alias icat="kitty +kitten icat"
 alias k="kitty +kitten"
 alias v="nvim"
 
-source ".config/scripts/monitor.sh"
 
 ## ==================================================================
 ## old bash aliases
 ## ==================================================================
 alias reloadzsh="source ~/.zshrc"
-alias alises="nvim ~/.aliases.zsh"
+alias aliases="nvim ~/.aliases.zsh"
 
 # git
 alias gs="git status"
