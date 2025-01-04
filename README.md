@@ -35,6 +35,7 @@ Create symlinks:
 ```sh
 REPO_DIR="$( dirname $(pwd) )/dotfiles"
 ln -s ${REPO_DIR}/.tmux.conf ~/.tmux.conf
+# ln -s ${REPO_DIR}/.tmux.conf ~/.config/tmux/tmux.conf
 ln -s ${REPO_DIR}/.zshrc ~/.zshrc
 ln -s ${REPO_DIR}/aliases.sh ~/.aliases
 ln -s ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
