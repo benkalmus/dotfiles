@@ -72,6 +72,7 @@ function reboot-to-windows() {
     echo "Boot '$boot_number' set. Run 'sudo reboot' to start to Windows"
 }
 
+alias rmr="/usr/bin/rm"
 alias rm="trash-put"
 # exa replacement for ls
 # alias ls="exa"
