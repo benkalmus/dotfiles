@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/.asdf/shims
 export PATH=$PATH:/usr/local/cuda/bin
 
@@ -112,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -128,23 +130,23 @@ bindkey "^[[B" history-beginning-search-forward
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [[ -f "$HOME/.aliases" ]]; then
-  source "$HOME/.aliases"
-fi
-if [[ -f "$HOME/.config/scripts/monitor.sh" ]]; then
-  source "$HOME/.config/scripts/monitor.sh"
-fi
+source_file ()
+{
+    if [[ -f "$1" ]]; then
+        source "$1"
+    fi
+}
+# ==================================================================
+# Startup scripts
+# ==================================================================
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+source_file "$HOME/.aliases"
+source_file "$HOME/.config/scripts/monitor.sh"
+source_file $HOME/.profile
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source_file ~/.p10k.zsh
+source_file ~/.fzf.zsh
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-
-if [[ -f $HOME/.profile ]]; then
-  source $HOME/.profile
-fi
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# [ -f ~/.fzf.zsh ]
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && source ~/.fzf.zsh
