@@ -130,10 +130,19 @@ bindkey "^[[B" history-beginning-search-forward
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+ZSHRC_LOGFILE=/dev/null
+debug ()
+{
+    local dt=$( date +"%Y-%m-%d %H:%M:%S" )
+    echo "$dt $@" >> $ZSHRC_LOGFILE
+}
+
 source_file ()
 {
     if [[ -f "$1" ]]; then
         source "$1"
+    else
+        debug "file not found $1"
     fi
 }
 # ==================================================================
