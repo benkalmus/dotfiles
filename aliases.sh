@@ -32,6 +32,11 @@ alias d="docker"
 alias dc="docker compose"
 alias dci="docker images -a"
 alias dps="docker ps -a"
+alias dstopped="docker ps --fitler status=exited"
+alias drm="docker rm"
+alias drmi="docker rmi"
+alias drmif="docker rmi -f"
+alias drmf="docker rm -f"
 alias dockerfix="sudo chmod 666 /var/run/docker.sock"
 
 ## ==================================================================
