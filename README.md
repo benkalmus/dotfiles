@@ -56,6 +56,7 @@ ln -snf ${REPO_DIR}/aliases.sh ~/.aliases
 ln -snf ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
 ln -snf ${REPO_DIR}/.p10k.zsh ~/.p10k.zsh
 
+ln -snf ${REPO_DIR}/.gitconfig ~/.gitconfig
 ln -snf ${REPO_DIR}/scripts/ ~/.config
 # not needed:
 # ln -s ${REPO_DIR}/.tmux.conf ~/.config/tmux/tmux.conf

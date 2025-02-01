@@ -1,0 +1,11 @@
+[init]
+	defaultBranch = master
+[push]
+	autoSetupRemote = true
+[user]
+	email = kalmusb@gmail.com
+	name = Ben Kalmus
+[core]
+	editor = /usr/bin/nvim
+[pull]
+	rebase = true
