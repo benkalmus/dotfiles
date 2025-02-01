@@ -15,6 +15,14 @@ export PATH=$PATH:/usr/local/cuda/bin
 export PATH=/usr/local/cuda-12/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-12/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+# for x11 forwarding:
+export XAUTHORITY=$HOME/.Xauthority
+# also make sure to: 
+# xauth list
+# xauth add $DISPLAY -  `mcookie`
+# xauth list
+# xauth nextract ~/xcookie $DISPLAY
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
