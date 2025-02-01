@@ -32,6 +32,7 @@ alias d="docker"
 alias dc="docker compose"
 alias dci="docker images -a"
 alias dps="docker ps -a"
+alias dockerfix="sudo chmod 666 /var/run/docker.sock"
 
 ## ==================================================================
 ## python
