@@ -78,6 +78,13 @@ function reboot-to-windows() {
     # set the next boot OS to Windows
     sudo efibootmgr -n "$boot_number"
     echo "Boot '$boot_number' set. Run 'sudo reboot' to start to Windows"
+    echo "Reboot to windows now? [yY]"
+    read response
+    if [[ "$response" =~ [yY] ]]; then
+        echo "Rebooting now"
+        sleep 3
+        sudo reboot
+    fi
 }
 
 alias rmr="/usr/bin/rm"
