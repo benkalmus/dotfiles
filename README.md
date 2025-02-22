@@ -42,6 +42,7 @@
 
 - wireguard
 - asdf
+  - `brew install asdf`
 
 ## Set up
 
