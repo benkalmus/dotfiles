@@ -93,5 +93,5 @@ alias rm="trash-put"
 # alias ls="exa"
 alias lltr="ll --sort=newest"
 alias untar="tar -xvf"
-alias ssh="ssh -X" # ssh with X forwarding (for clipboard)
+# alias ssh="ssh -X" # ssh with X forwarding (for clipboard)
 alias whatsmyip="curl ifcfg.me"
