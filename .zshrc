@@ -87,8 +87,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-HISTSIZE=20000
-SAVEHIST=20000
+HISTSIZE=200000
+SAVEHIST=200000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -171,6 +171,7 @@ source_file $HOME/.profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source_file ~/.p10k.zsh
 source_file ~/.fzf.zsh
+source <(fzf --zsh)
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
