@@ -2,42 +2,116 @@
 
 # Script to automatically adjust monitor brightness based on time.
 # Uses ddcutil to control brightness via DDC/CI.
+# Optimizations:
+#   - Caches display IDs to avoid repeated ddcutil detect calls.
+#   - Checks current brightness before setting to avoid unnecessary DDC/CI commands.
 
-# Function to set brightness for all detected monitors
-set_brightness() {
-    local brightness="$1" # Brightness level (0-100)
-    local monitors
-    monitors=$(ddcutil detect | grep -Po "Display \d" | wc -l)
+# Cache file for display IDs
+DISPLAY_CACHE_FILE="/tmp/ddcutil_display_cache.txt"
 
-    if [[ -z "$monitors" || "$monitors" -eq 0 ]]; then
-        # echo "Error: No monitors detected by ddcutil."
-        exit 1
+# Function to get display IDs, using the cache if available
+get_display_ids() {
+    if [[ -f "$DISPLAY_CACHE_FILE" ]]; then
+        readarray -t display_ids <"$DISPLAY_CACHE_FILE"
+        if [[ ${#display_ids[@]} -gt 0 ]]; then
+            # echo "Using cached display IDs."
+            echo "${display_ids[@]}" # Return the display IDs
+            return 0                 #Success
+        fi
     fi
 
-    for i in $(seq 1 "$monitors"); do
-        # echo "Setting brightness on Display $i to $brightness"
-        ddcutil --display "$i" setvcp 10 "$brightness" >/dev/null 2>&1
-        if [[ $? -ne 0 ]]; then
-            echo "Error: Failed to set brightness on Display $i."
-        fi
-    done
+    # Detect monitors and cache display IDs
+    local monitors
+    monitors=$(ddcutil detect | grep -Po "Display \d" | awk '{print $2}')
+    local display_ids=()
+
+    if [[ -z "$monitors" ]]; then
+        echo "Error: No monitors detected by ddcutil."
+        return 1 # failure
+    fi
+
+    #populate the array for using later and the string we'll store for cache
+    local cache_string=""
+    while IFS= read -r display_id; do
+        display_ids+=("$display_id")
+        cache_string+="$display_id\n"
+    done <<<"$monitors" #pipe the monitors string through a loop.
+
+    #remove trailing newline from the cache string.  important!
+    cache_string=$(echo -n "$cache_string")
+    #now save it to the file
+    echo -n "$cache_string" >"$DISPLAY_CACHE_FILE"
+
+    #Return The array
+    echo "${display_ids[@]}"
+
 }
 
+# Function to set brightness for a specific display ID
+set_brightness() {
+    local display_id="$1"
+    local target_brightness="$2"
+
+    local current_brightness
+    current_brightness=$(ddcutil --display "$display_id" getvcp 10 | grep -Po "current value =.*," | grep -Po "\d*")
+
+    if [[ -z "$current_brightness" ]]; then
+        echo "Error: Couldn't determine current brightness for Display $display_id. Skipping."
+        return 1
+    fi
+
+    if [[ "$current_brightness" -ne "$target_brightness" ]]; then
+        # echo "Setting brightness on Display $display_id from $current_brightness to $target_brightness"
+        ddcutil --display "$display_id" setvcp 10 "$target_brightness" >/dev/null 2>&1
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Failed to set brightness on Display $display_id."
+        fi
+        return 0
+    fi
+    # echo "Brightness on Display $display_id is already at $target_brightness. Skipping."
+}
+
+#Function to delete cache file when we suspect something changed, like monitor config
+clear_cache() {
+    if [[ -f "$DISPLAY_CACHE_FILE" ]]; then
+        echo "clearing display cache file at $DISPLAY_CACHE_FILE"
+        rm "$DISPLAY_CACHE_FILE"
+    fi
+}
+
+#Every hour we suspect monitor configuration might have changed so we reset the cache
+# checks if hour is in the first 5 minutes HH:MM < HH:05.
+if [[ $(date +%M) -lt 5 ]]; then
+    clear_cache
+fi
+
+# Main script logic
 current_hour=$(date +%H) # Get the current hour (24-hour format)
 
-case "$current_hour" in
-07 | 08 | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18) # 7 AM - 6 PM (inclusive)
-    set_brightness 100
-    ;;
-19 | 20 | 21) # 7 PM - 9 PM (inclusive)
-    set_brightness 50
-    ;;
-22 | 23 | 00 | 01 | 02 | 03 | 04 | 05 | 06) # 10 PM - 6 AM (inclusive)
-    set_brightness 0
-    ;;
-*)
-    exit 0
-    ;;
-esac
+# Get display IDs
+display_ids=$(get_display_ids)
+if [[ -z "$display_ids" ]]; then
+    echo "Error: Could not retrieve display IDs."
+    exit 1
+fi
 
+target_brightness=0 #initialize to 0
+
+# Note, must start with largest value
+if [[ "$current_hour" -ge 23 ]]; then
+    target_brightness=0
+elif [[ "$current_hour" -ge 19 ]]; then
+    target_brightness=20
+elif [[ "$current_hour" -ge 18 ]]; then
+    target_brightness=80
+elif [[ "$current_hour" -ge 06 ]]; then
+    target_brightness=100
+fi
+
+# Loop through display IDs and set brightness
+for display_id in $display_ids; do
+    set_brightness "$display_id" "$target_brightness"
+done
+
+# echo "Brightness adjustment process completed."
 exit 0
