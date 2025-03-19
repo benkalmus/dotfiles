@@ -60,15 +60,17 @@ set_brightness() {
         return 1
     fi
 
-    if [[ "$current_brightness" -ne "$target_brightness" ]]; then
-        # echo "Setting brightness on Display $display_id from $current_brightness to $target_brightness"
-        ddcutil --display "$display_id" setvcp 10 "$target_brightness" >/dev/null 2>&1
-        if [[ $? -ne 0 ]]; then
-            echo "Error: Failed to set brightness on Display $display_id."
-        fi
+    if [[ "$current_brightness" -eq "$target_brightness" ]]; then
+        # echo "Brightness on Display $display_id is already at $target_brightness. Skipping."
         return 0
     fi
-    # echo "Brightness on Display $display_id is already at $target_brightness. Skipping."
+
+    # echo "Setting brightness on Display $display_id from $current_brightness to $target_brightness"
+    ddcutil --display "$display_id" setvcp 10 "$target_brightness" >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        echo "Error: Failed to set brightness on Display $display_id."
+    fi
+    return 0
 }
 
 #Function to delete cache file when we suspect something changed, like monitor config
