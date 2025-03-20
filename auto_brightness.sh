@@ -100,13 +100,14 @@ fi
 target_brightness=0 #initialize to 0
 
 # Note, must start with largest value
-if [[ "$current_hour" -ge 23 ]]; then
+# telling bash to use base 10 #10 because cucrent hour is printedf with a leading 0
+if ((10#$current_hour >= 23)); then
     target_brightness=0
-elif [[ "$current_hour" -ge 19 ]]; then
+elif ((10#$current_hour >= 19)); then
     target_brightness=20
-elif [[ "$current_hour" -ge 18 ]]; then
+elif ((10#$current_hour >= 18)); then
     target_brightness=80
-elif [[ "$current_hour" -ge 06 ]]; then
+elif ((10#$current_hour >= 6)); then
     target_brightness=100
 fi
 
