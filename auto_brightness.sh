@@ -8,6 +8,7 @@
 
 # Cache file for display IDs
 DISPLAY_CACHE_FILE="/tmp/ddcutil_display_cache.txt"
+display_ids=()
 
 # Function to get display IDs, using the cache if available
 get_display_ids() {
@@ -15,36 +16,26 @@ get_display_ids() {
         readarray -t display_ids <"$DISPLAY_CACHE_FILE"
         if [[ ${#display_ids[@]} -gt 0 ]]; then
             # echo "Using cached display IDs."
-            echo "${display_ids[@]}" # Return the display IDs
-            return 0                 #Success
+            return 0
         fi
     fi
 
     # Detect monitors and cache display IDs
     local monitors
     monitors=$(ddcutil detect | grep -Po "Display \d" | awk '{print $2}')
-    local display_ids=()
 
     if [[ -z "$monitors" ]]; then
         echo "Error: No monitors detected by ddcutil."
         return 1 # failure
     fi
 
-    #populate the array for using later and the string we'll store for cache
-    local cache_string=""
+    #populate the display ids array
     while IFS= read -r display_id; do
         display_ids+=("$display_id")
-        cache_string+="$display_id\n"
     done <<<"$monitors" #pipe the monitors string through a loop.
 
-    #remove trailing newline from the cache string.  important!
-    cache_string=$(echo -n "$cache_string")
     #now save it to the file
-    echo -n "$cache_string" >"$DISPLAY_CACHE_FILE"
-
-    #Return The array
-    echo "${display_ids[@]}"
-
+    printf "%s\n" "${display_ids[@]}" >"$DISPLAY_CACHE_FILE"
 }
 
 # Function to set brightness for a specific display ID
@@ -83,31 +74,31 @@ clear_cache() {
 
 #Every hour we suspect monitor configuration might have changed so we reset the cache
 # checks if hour is in the first 5 minutes HH:MM < HH:05.
-if [[ $(date +%M) -lt 5 ]]; then
+if ((10#$(date +%M) <= 5)); then
     clear_cache
 fi
 
-# Main script logic
-current_hour=$(date +%H) # Get the current hour (24-hour format)
+# Get the current hour (24-hour format)
+current_hour="10#$(date +%H)"
 
 # Get display IDs
-display_ids=$(get_display_ids)
-if [[ -z "$display_ids" ]]; then
+get_display_ids
+if [[ -z "${display_ids[*]}" ]]; then
     echo "Error: Could not retrieve display IDs."
     exit 1
 fi
 
-target_brightness=0 #initialize to 0
+target_brightness=0
 
 # Note, must start with largest value
 # telling bash to use base 10 #10 because cucrent hour is printedf with a leading 0
-if ((10#$current_hour >= 23)); then
+if ((current_hour >= 23)); then
     target_brightness=0
-elif ((10#$current_hour >= 19)); then
-    target_brightness=20
-elif ((10#$current_hour >= 18)); then
+elif ((current_hour >= 19)); then
+    target_brightness=50
+elif ((current_hour >= 18)); then
     target_brightness=80
-elif ((10#$current_hour >= 6)); then
+elif ((current_hour >= 6)); then
     target_brightness=100
 fi
 
