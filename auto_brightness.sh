@@ -93,13 +93,17 @@ target_brightness=0
 # Note, must start with largest value
 # telling bash to use base 10 #10 because cucrent hour is printedf with a leading 0
 if ((current_hour >= 23)); then
-    target_brightness=0
-elif ((current_hour >= 19)); then
+    target_brightness=10
+elif ((current_hour >= 21)); then
     target_brightness=50
+elif ((current_hour >= 19)); then
+    target_brightness=60
 elif ((current_hour >= 18)); then
     target_brightness=80
 elif ((current_hour >= 6)); then
     target_brightness=100
+elif ((current_hour >= 0)); then
+    target_brightness=0
 fi
 
 # Loop through display IDs and set brightness
