@@ -12,7 +12,7 @@ export ASDF_DATA_DIR="$HOME/.asdf"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$ASDF_DATA_DIR/shims
-export PATH=$PATH:/usr/local/cuda/bin
+# export PATH=$PATH:/usr/local/cuda/bin
 
 # export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export PATH=/usr/local/cuda-12/bin${PATH:+:${PATH}}
