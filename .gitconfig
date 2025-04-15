@@ -9,3 +9,5 @@
 	editor = /usr/bin/nvim
 [pull]
 	rebase = true
+[credential]
+	helper = store
