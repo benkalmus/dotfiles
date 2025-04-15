@@ -45,19 +45,25 @@ alias dockerfix="sudo chmod 666 /var/run/docker.sock"
 ## python
 # activate python virtual environment in current directory, or asks to create one if doesnt already exist
 function activ-pyenv() {
+    if command -v python >/dev/null 2>&1; then
+        py_version=python
+    else
+        py_version=python3
+    fi
+
     if [[ -f ".venv/bin/activate" ]]; then
         source .venv/bin/activate
     else
         echo "Could not find dir .venv, Create? [y/n]"
         read -r CREATE
         if [[ $CREATE == "y" ]]; then
-            python3 -m venv .venv
+            $py_version -m venv .venv
             source .venv/bin/activate
         fi
     fi
 }
 
-alias py="python3"
+alias py="python || python3"
 
 # linux audio
 alias pipewire-restart="systemctl --user restart pipewire pipewire-pulse"
