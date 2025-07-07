@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 # Script to automatically adjust monitor brightness based on time.
 # Uses ddcutil to control brightness via DDC/CI.
