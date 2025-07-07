@@ -67,6 +67,9 @@ alias py="python || python3"
 
 # linux audio
 alias pipewire-restart="systemctl --user restart pipewire pipewire-pulse"
+function plasma-restart() {
+    ps -ef | grep plasmashell | grep -v "grep" | awk -F ' ' '{ print $2}' | xargs kill -9 && kstart plasmashell
+}
 
 # mosh
 alias msh='mosh --no-init --ssh="ssh -p 22"'
