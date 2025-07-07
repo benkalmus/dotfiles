@@ -53,9 +53,16 @@ function contrast() {
 function monitor-input-switch() {
     local -r monitor=$1
     local source=$2
-    local vcp_code="60"
+    local vcp_code="60" # see `ddcutil capabilities`
+    # Feature: 60 (Input Source)
+    #    Values:
+    #       01: VGA-1
+    #       0f: DisplayPort-1
+    #       11: HDMI-1
+
     if [[ -z $1 ]]; then
-        printf "Usage: \n$0 monitor[0-9] source['HDMI', 'DP']\n"
+        echo "Usage: 
+    $0 monitor[0-9] source['HDMI', 'DP']"
         return 1
     fi
     case $source in
@@ -74,14 +81,18 @@ function monitor-input-switch() {
         source="1"
         ;;
     *)
+        echo "Usage: 
+    $0 monitor[0-9] source['HDMI', 'DP']"
         source="0x0f"
+        return 1
         ;;
     esac
     ddcutil --display "$monitor" setvcp "$vcp_code" "$source"
+    return 0
 }
 
 # monitor control
 
-alias monitor-work="monitor-input-switch 1 hdmi; monitor-input-switch 2 hdmi"
-alias monitor-left-work="monitor-input-switch 1 hd; monitor-input-switch 2 dp"
-alias monitor-home="monitor-input-switch 1 dp; monitor-input-switch 2 dp"
+alias monitor-work="monitor-input-switch 1 hdmi && monitor-input-switch 2 hdmi"
+alias monitor-half="monitor-input-switch 1 dp && monitor-input-switch 2 hdmi"
+alias monitor-home="monitor-input-switch 1 dp && monitor-input-switch 2 dp"
