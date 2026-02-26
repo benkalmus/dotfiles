@@ -170,7 +170,7 @@ source_file "$HOME/.config/scripts/monitor.sh"
 source_file $HOME/.profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source_file ~/.p10k.zsh
-source_file ~/.fzf.zsh
+source_file ~/.config/.env
 source <(fzf --zsh)
 
 # fix for kitty terminal
