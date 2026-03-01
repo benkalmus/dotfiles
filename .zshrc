@@ -26,6 +26,7 @@ export XAUTHORITY=$HOME/.Xauthority
 # xauth list
 # xauth nextract ~/xcookie $DISPLAY
 
+export OPENCODE_ENABLE_EXA=1 
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
