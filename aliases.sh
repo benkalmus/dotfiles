@@ -9,6 +9,10 @@ alias v="nvim"
 alias reloadzsh="source ~/.zshrc"
 alias aliases="nvim ~/.aliases"
 
+alias lg="lazygit"
+alias opencode="opencode --log-level DEBUG --print-logs >> ~/.local/share/opencode/log/$(date -I).stdout"
+alias oc="opencode"
+
 # git
 alias gs="git status"
 alias gp="git push"
