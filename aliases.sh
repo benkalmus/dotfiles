@@ -10,7 +10,7 @@ alias reloadzsh="source ~/.zshrc"
 alias aliases="nvim ~/.aliases"
 
 alias lg="lazygit"
-alias opencode="env -u TMUX opencode"
+alias opencode="opencode --log-level DEBUG --print-logs >> ~/.local/share/opencode/log/$(date -I).stdout"
 alias oc="opencode"
 
 # git
@@ -71,10 +71,6 @@ alias py="python || python3"
 
 # linux audio
 alias pipewire-restart="systemctl --user restart pipewire pipewire-pulse"
-function plasma-restart() {
-    ps -ef | grep plasmashell | grep -v "grep" | awk -F ' ' '{ print $2}' | xargs kill -9 && kstart plasmashell
-}
-alias rsyncv='rsync -v --progress'
 
 # mosh
 alias msh='mosh --no-init --ssh="ssh -p 22"'
