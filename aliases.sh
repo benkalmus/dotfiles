@@ -9,6 +9,10 @@ alias v="nvim"
 alias reloadzsh="source ~/.zshrc"
 alias aliases="nvim ~/.aliases"
 
+alias lg="lazygit"
+alias opencode="env -u TMUX opencode"
+alias oc="opencode"
+
 # git
 alias gs="git status"
 alias gp="git push"

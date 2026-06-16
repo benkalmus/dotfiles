@@ -26,6 +26,7 @@ export XAUTHORITY=$HOME/.Xauthority
 # xauth list
 # xauth nextract ~/xcookie $DISPLAY
 
+export OPENCODE_ENABLE_EXA=1 
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -129,6 +130,7 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -170,7 +172,7 @@ source_file "$HOME/.config/scripts/monitor.sh"
 source_file $HOME/.profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source_file ~/.p10k.zsh
-source_file ~/.fzf.zsh
+source_file ~/.config/.env
 source <(fzf --zsh)
 
 # fix for kitty terminal
