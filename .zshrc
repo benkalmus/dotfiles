@@ -26,6 +26,8 @@ export XAUTHORITY=$HOME/.Xauthority
 # xauth list
 # xauth nextract ~/xcookie $DISPLAY
 
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+
 export OPENCODE_ENABLE_EXA=1 
 
 # Path to your oh-my-zsh installation.
