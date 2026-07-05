@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # 0.16.0 verison of asdf requires:
 export ASDF_DATA_DIR="$HOME/.asdf"
@@ -26,6 +26,8 @@ export XAUTHORITY=$HOME/.Xauthority
 # xauth list
 # xauth nextract ~/xcookie $DISPLAY
 
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+
 export OPENCODE_ENABLE_EXA=1 
 
 # Path to your oh-my-zsh installation.
@@ -35,7 +37,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -88,8 +90,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-HISTSIZE=200000
-SAVEHIST=200000
+HISTSIZE=400000
+SAVEHIST=400000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -116,6 +118,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Show hostname in prompt
+RPROMPT='%F{cyan}%m%f'
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -131,6 +136,10 @@ source $ZSH/oh-my-zsh.sh
 # fi
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+# System limits
+ulimit -n 100000        # increase max open files
+ulimit -u 2048          # increase max user processes
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -168,10 +177,12 @@ source_file ()
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 source_file "$HOME/.aliases"
+source_file "$HOME/.config/zsh/scripts/search-replace.sh"
+source_file "$HOME/.config/zsh/scripts/nvim-kill.sh"
 source_file "$HOME/.config/scripts/monitor.sh"
 source_file $HOME/.profile
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source_file ~/.p10k.zsh
+# source_file ~/.p10k.zsh
 source_file ~/.config/.env
 source <(fzf --zsh)
 

@@ -46,23 +46,33 @@
 
 ## Set up
 
-After above have been created.
-Create symlinks:
+Uses [GNU Stow](https://www.gnu.org/software/stow/manual/stow.html) to manage symlinks.
 
 ```sh
-REPO_DIR="$( dirname $(pwd) )/dotfiles"
-ln -snf ${REPO_DIR}/.tmux.conf ~/.tmux.conf
-ln -snf ${REPO_DIR}/.zshrc ~/.zshrc
-ln -snf ${REPO_DIR}/aliases.sh ~/.aliases
-ln -snf ${REPO_DIR}/kitty.conf ~/.config/kitty/kitty.conf
-ln -snf ${REPO_DIR}/.p10k.zsh ~/.p10k.zsh
+# Install stow
+sudo apt install stow
 
-ln -snf ${REPO_DIR}/.gitconfig ~/.gitconfig
-ln -snf ${REPO_DIR}/scripts/ ~/.config
-# not needed:
-# ln -s ${REPO_DIR}/.tmux.conf ~/.config/tmux/tmux.conf
+# Clone and deploy
+git clone git@github.com:benkalmus/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make
 ```
 
-# TODOs
+If upgrading from old symlink-based setup:
 
-- Configure [stow](https://www.gnu.org/software/stow/manual/stow.html)
+```sh
+cd ~/dotfiles
+make clean && make
+```
+
+Or manually:
+
+```sh
+stow -v -R -t ~ tmux zsh git wezterm kitty
+```
+
+First-time setup (adopt existing files):
+
+```sh
+stow --adopt -t ~ tmux zsh git wezterm kitty
+```
