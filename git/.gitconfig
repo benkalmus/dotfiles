@@ -6,7 +6,7 @@
 	email = kalmusb@gmail.com
 	name = Ben Kalmus
 [core]
-	editor = /usr/bin/nvim
+	editor = /home/linuxbrew/.linuxbrew/bin/nvim
 [pull]
 	rebase = true
 [credential]
