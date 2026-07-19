@@ -188,3 +188,4 @@ source <(fzf --zsh)
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+export PATH="$PATH:/opt/rocm/bin"
