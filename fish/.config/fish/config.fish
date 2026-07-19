@@ -1,6 +1,9 @@
 # CachyOS base config
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
+# Disable fastfetch on startup
+function fish_greeting; end
+
 # Environment
 set -gx ASDF_DATA_DIR $HOME/.asdf
 set -gx XAUTHORITY $HOME/.Xauthority
@@ -33,7 +36,7 @@ bind \e\[A history-search-backward
 bind \e\[B history-search-forward
 
 # Kitty SSH fix
-if test "$TERM" = xterm-kitty
-    alias ssh="kitty +kitten ssh"
-end
+# if test "$TERM" = xterm-kitty
+#     alias ssh="kitty +kitten ssh"
+# end
 fish_add_path /opt/rocm/bin
