@@ -28,6 +28,9 @@ eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # FZF
 fzf --fish | source
 
+# Zoxide — smart directory jumper
+zoxide init fish | source
+
 # Source env file
 source ~/.config/.env.fish 2>/dev/null
 

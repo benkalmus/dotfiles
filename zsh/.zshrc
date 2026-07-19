@@ -185,6 +185,7 @@ source_file $HOME/.profile
 # source_file ~/.p10k.zsh
 source_file ~/.config/.env
 source <(fzf --zsh)
+eval "$(zoxide init zsh)"
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
