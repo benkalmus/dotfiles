@@ -4,6 +4,10 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 # Disable fastfetch on startup
 function fish_greeting; end
 
+# Fix terminal rendering issues in tmux
+set -g fish_escape_delay_ms 100
+set -g fish_pager_show_completions 0
+
 # Environment
 set -gx ASDF_DATA_DIR $HOME/.asdf
 set -gx XAUTHORITY $HOME/.Xauthority
