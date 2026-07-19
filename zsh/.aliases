@@ -97,8 +97,8 @@ function reboot-to-windows() {
     fi
 }
 
-alias rmr="/usr/bin/rm"
-alias rm="trash-put"
+# alias rmr="/usr/bin/rm"
+# alias rm="trash-put"
 # exa replacement for ls
 # alias ls="exa"
 alias lltr="ll --sort=newest"
