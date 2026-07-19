@@ -36,3 +36,4 @@ bind \e\[B history-search-forward
 if test "$TERM" = xterm-kitty
     alias ssh="kitty +kitten ssh"
 end
+fish_add_path /opt/rocm/bin
