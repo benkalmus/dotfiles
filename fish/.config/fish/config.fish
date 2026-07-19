@@ -1,0 +1,38 @@
+# CachyOS base config
+source /usr/share/cachyos-fish-config/cachyos-config.fish
+
+# Environment
+set -gx ASDF_DATA_DIR $HOME/.asdf
+set -gx XAUTHORITY $HOME/.Xauthority
+set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
+set -gx OPENCODE_ENABLE_EXA 1
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+
+# Path
+fish_add_path $HOME/bin $HOME/.local/bin /usr/local/bin
+fish_add_path $ASDF_DATA_DIR/shims
+fish_add_path /usr/local/cuda-12/bin
+set -gx LD_LIBRARY_PATH /usr/local/cuda-12/lib64 $LD_LIBRARY_PATH
+
+# System limits
+ulimit -n 100000
+ulimit -u 2048
+
+# Brew
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# FZF
+fzf --fish | source
+
+# Source env file
+source ~/.config/.env.fish 2>/dev/null
+
+# Key bindings — match zsh history search behavior
+bind \e\[A history-search-backward
+bind \e\[B history-search-forward
+
+# Kitty SSH fix
+if test "$TERM" = xterm-kitty
+    alias ssh="kitty +kitten ssh"
+end

@@ -6,14 +6,11 @@
   - `curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin`
   - [Docs](https://sw.kovidgoyal.net/kitty/overview)
 - trash-cli: `sudo apt install trash-cli`
-- zsh and ohmyzsh
-  - `sudo apt install zsh`
-  - plugins:
-    - autosuggestions: `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
-    - syntaxhighlithing: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
-  - p10k: `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"`
-  - `chsh -s $(which zsh)`
-  - ohmyzsh `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+- fish shell
+  - `sudo pacman -S fish`
+  - `chsh -s $(which fish)`
+  - tide prompt: `fish -c "fisher install IlanCosman/tide@v6"`
+  - run `tide configure` to customize prompt
 - brew
   - `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
   - Apps:
@@ -68,11 +65,11 @@ make clean && make
 Or manually:
 
 ```sh
-stow -v -R -t ~ tmux zsh git wezterm kitty
+stow -v -R -t ~ fish tmux git wezterm kitty
 ```
 
 First-time setup (adopt existing files):
 
 ```sh
-stow --adopt -t ~ tmux zsh git wezterm kitty
+stow --adopt -t ~ fish tmux git wezterm kitty
 ```
