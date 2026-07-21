@@ -137,10 +137,6 @@ RPROMPT='%F{cyan}%m%f'
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# System limits
-ulimit -n 100000        # increase max open files
-ulimit -u 2048          # increase max user processes
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
