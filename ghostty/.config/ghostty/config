@@ -1,0 +1,19 @@
+font-family = FiraCode Nerd Font
+font-size = 11
+
+foreground = #dddddd
+background = #282a36
+background-opacity = 0.90
+
+window-padding-x = 0
+window-padding-y = 0
+
+bell-features =
+
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+keybind = ctrl+,=unbind
+keybind = ctrl+.=unbind
+keybind = ctrl+;=unbind
+keybind = ctrl+'=unbind
