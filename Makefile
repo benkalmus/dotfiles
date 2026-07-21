@@ -1,5 +1,5 @@
 DOTFILES := $(shell pwd)
-PACKAGES := tmux zsh git wezterm kitty fish
+PACKAGES := tmux zsh git wezterm kitty fish alacritty ghostty
 
 .PHONY: all stow unstow restow adopt clean
 
@@ -32,5 +32,5 @@ clean:
 	done
 	@rm -f $(HOME)/.zshrc $(HOME)/.tmux.conf $(HOME)/.gitconfig \
 		$(HOME)/.aliases $(HOME)/.p10k.zsh $(HOME)/.wezterm.lua
-	@rm -rf $(HOME)/.config/kitty $(HOME)/.config/scripts $(HOME)/.config/zsh
+	@rm -rf $(HOME)/.config/ghostty/config $(HOME)/.config/kitty $(HOME)/.config/alacritty $(HOME)/.config/scripts $(HOME)/.config/zsh
 	@echo "Clean. Run 'make stow' to deploy."
