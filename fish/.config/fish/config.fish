@@ -2,7 +2,8 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
 # Disable fastfetch on startup
-function fish_greeting; end
+function fish_greeting
+end
 
 # Disable done plugin notifications (CachyOS default)
 set -g __done_min_cmd_duration 999999999
@@ -28,9 +29,6 @@ set -gx LD_LIBRARY_PATH /usr/local/cuda-12/lib64 $LD_LIBRARY_PATH
 ulimit -n 100000
 ulimit -u 2048
 
-# Brew
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 # FZF
 fzf --fish | source
 
@@ -52,3 +50,6 @@ fish_add_path /opt/rocm/bin
 
 # WiVRn: tell Proton to use OpenXR runtime
 set -gx PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES 1
+
+# Brew (must run last!)
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
