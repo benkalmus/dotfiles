@@ -11,7 +11,6 @@ set -g __done_min_cmd_duration 999999999
 set -g fish_escape_delay_ms 100
 set -g fish_pager_show_completions 0
 
-# Environment
 set -gx ASDF_DATA_DIR $HOME/.asdf
 set -gx XAUTHORITY $HOME/.Xauthority
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
@@ -50,3 +49,6 @@ bind \e\[B history-search-forward
 #     alias ssh="kitty +kitten ssh"
 # end
 fish_add_path /opt/rocm/bin
+
+# WiVRn: tell Proton to use OpenXR runtime
+set -gx PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES 1
