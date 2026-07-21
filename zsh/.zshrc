@@ -185,6 +185,9 @@ eval "$(zoxide init zsh)"
 
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
+# fix for ghostty terminal
+[ "$TERM" = "xterm-ghostty" ] && alias ssh='TERM=xterm-256color ssh'
 export PATH="$PATH:/opt/rocm/bin"
 
 # WiVRn: tell Proton to use OpenXR runtime

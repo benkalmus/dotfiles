@@ -46,6 +46,11 @@ bind \e\[B history-search-forward
 # if test "$TERM" = xterm-kitty
 #     alias ssh="kitty +kitten ssh"
 # end
+
+# Ghostty SSH fix
+if test "$TERM" = xterm-ghostty
+    alias ssh="TERM=xterm-256color ssh"
+end
 fish_add_path /opt/rocm/bin
 
 # WiVRn: tell Proton to use OpenXR runtime
