@@ -4,6 +4,9 @@ source /usr/share/cachyos-fish-config/cachyos-config.fish
 # Disable fastfetch on startup
 function fish_greeting; end
 
+# Disable done plugin notifications (CachyOS default)
+set -g __done_min_cmd_duration 999999999
+
 # Fix terminal rendering issues in tmux
 set -g fish_escape_delay_ms 100
 set -g fish_pager_show_completions 0

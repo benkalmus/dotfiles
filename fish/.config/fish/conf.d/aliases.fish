@@ -6,6 +6,7 @@ alias v="nvim"
 # Shell
 alias reloadfish="exec fish"
 alias aliases="nvim ~/.config/fish/conf.d/aliases.fish"
+alias cd=z
 
 # Tools
 alias lg="lazygit"
