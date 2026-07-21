@@ -186,3 +186,6 @@ eval "$(zoxide init zsh)"
 # fix for kitty terminal
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 export PATH="$PATH:/opt/rocm/bin"
+
+# WiVRn: tell Proton to use OpenXR runtime
+export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
