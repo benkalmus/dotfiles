@@ -3,7 +3,7 @@ font-size = 11
 
 foreground = #dddddd
 background = #282a36
-background-opacity = 0.90
+background-opacity = 0.95
 
 window-padding-x = 0
 window-padding-y = 0
