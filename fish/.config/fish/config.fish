@@ -25,10 +25,6 @@ fish_add_path $ASDF_DATA_DIR/shims
 fish_add_path /usr/local/cuda-12/bin
 set -gx LD_LIBRARY_PATH /usr/local/cuda-12/lib64 $LD_LIBRARY_PATH
 
-# System limits
-ulimit -n 100000
-ulimit -u 2048
-
 # FZF
 fzf --fish | source
 
