@@ -48,7 +48,15 @@ alias dockerfix="sudo chmod 666 /var/run/docker.sock"
 
 # Python
 alias py="python"
-
+function venv
+    if test -f .venv/bin/activate.fish
+        source .venv/bin/activate.fish
+    else
+        set -l python (command -v python3 python | head -1)
+        $python -m venv .venv
+        source .venv/bin/activate.fish
+    end
+end
 # Audio
 alias pipewire-restart="systemctl --user restart pipewire pipewire-pulse"
 
