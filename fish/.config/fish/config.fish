@@ -23,6 +23,8 @@ set -gx VISUAL nvim
 fish_add_path $HOME/bin $HOME/.local/bin /usr/local/bin
 fish_add_path $ASDF_DATA_DIR/shims
 fish_add_path /usr/local/cuda-12/bin
+fish_add_path $HOME/go/bin
+fish_add_path /opt/rocm/bin
 set -gx LD_LIBRARY_PATH /usr/local/cuda-12/lib64 $LD_LIBRARY_PATH
 
 # FZF
@@ -44,10 +46,9 @@ bind \e\[B history-search-forward
 # end
 
 # Ghostty SSH fix
-if test "$TERM" = xterm-ghostty
-    alias ssh="TERM=xterm-256color ssh"
-end
-fish_add_path /opt/rocm/bin
+# if test "$TERM" = xterm-ghostty
+#     alias ssh="TERM=xterm-256color ssh"
+# end
 
 # WiVRn: tell Proton to use OpenXR runtime
 set -gx PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES 1
