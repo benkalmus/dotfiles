@@ -54,3 +54,6 @@ set -gx PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES 1
 
 # Brew (must run last!)
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# oclist - OpenCode session lister
+alias oclist='/tmp/list-all-opencode-sessions/list_oc_session.sh'
