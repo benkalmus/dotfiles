@@ -36,6 +36,8 @@ alias grs="git restore --staged"
 alias d="docker"
 alias dc="docker compose"
 alias dci="docker images -a"
+# Docker ps shows where the compose files are located
+alias dp='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.project.working_dir\"}}"'
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias dstopped="docker ps --filter status=exited"
