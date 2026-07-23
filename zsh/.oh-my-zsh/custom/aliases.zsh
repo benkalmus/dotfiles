@@ -56,6 +56,7 @@ function rebase-branch {
 
 alias reloadzsh="source ~/.zshrc"
 alias v="nvim"
+alias t="tmux"
 
 # alias t='ts %H:%M:%S'
 alias date-now="date +%Y.%m.%d %H:%M:%S"
@@ -75,6 +76,7 @@ alias dockerfix='sudo chmod 666 /var/run/docker.sock'
 alias di='docker images'
 alias dps='docker ps'
 alias dps-exited='docker ps --filter "status=exited"'
+alias dp='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Label \"com.docker.compose.project\"}}\t{{.Label \"com.docker.compose.project.working_dir\"}}"'
 
 # kube 
 alias k='kubectl'

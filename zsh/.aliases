@@ -2,6 +2,7 @@
 alias icat="kitty +kitten icat"
 alias k="kitty +kitten"
 alias v="nvim"
+alias t="tmux"
 
 ## ==================================================================
 ## old bash aliases
