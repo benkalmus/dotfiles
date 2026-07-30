@@ -57,6 +57,7 @@ function rebase-branch {
 alias reloadzsh="source ~/.zshrc"
 alias v="nvim"
 alias t="tmux"
+alias ta="tmux attach"
 
 # alias t='ts %H:%M:%S'
 alias date-now="date +%Y.%m.%d %H:%M:%S"
