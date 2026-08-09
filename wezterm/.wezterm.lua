@@ -115,6 +115,12 @@ config.keys = {
 		mods = "ALT",
 		action = wezterm.action.SendKey({ key = "DownArrow", mods = "ALT" }),
 	},
+	-- Disable default key
+	{
+		key = "Enter",
+		mods = "ALT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 }
 
 -- =====================================================
