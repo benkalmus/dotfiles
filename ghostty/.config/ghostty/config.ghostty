@@ -1,5 +1,14 @@
+# to refresh CTRL SHIFT ,
+# defaults
+command = /usr/bin/fish
+working-directory = inherit
+click-repeat-interval = 500
+gtk-single-instance = false
+auto-update-channel = tip
+
+
 font-family = FiraCode Nerd Font
-font-size = 11
+font-size = 10
 foreground = #dddddd
 background = #282a36
 background-opacity = 0.95
@@ -8,10 +17,9 @@ window-padding-x = 0
 window-padding-y = 0
 
 bell-features =
-
-
+link-url = true
 cursor-style-blink = false
-gtk-titlebar = false
+gtk-titlebar = true
 
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
@@ -20,6 +28,8 @@ keybind = ctrl+,=unbind
 keybind = ctrl+.=unbind
 keybind = ctrl+;=unbind
 keybind = ctrl+'=unbind
+
+keybind = ctrl+enter=unbind
 
 keybind = alt+digit_1=unbind
 keybind = alt+1=unbind
