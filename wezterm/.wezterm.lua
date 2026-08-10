@@ -32,7 +32,7 @@ config.scrollback_lines = 10000
 -- Window Configuration
 -- =====================================================
 config.window_decorations = "TITLE"
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.95
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -70,11 +70,11 @@ config.keys = {
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 	-- Existing key preservation for Neovim/Vim
-	{
-		key = "Tab",
-		mods = "CTRL",
-		action = wezterm.action.DisableDefaultAssignment,
-	},
+	-- {
+	-- 	key = "Tab",
+	-- 	mods = "CTRL",
+	-- 	action = wezterm.action.DisableDefaultAssignment,
+	-- },
 	{
 		key = "[",
 		mods = "CTRL",
