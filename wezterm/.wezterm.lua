@@ -5,8 +5,15 @@ local config = wezterm.config_builder()
 -- Terminal Key Behavior
 -- =====================================================
 config.term = "wezterm" -- Report as wezterm terminal type
-config.enable_kitty_keyboard = true -- Modern keyboard protocol (optional)
-config.enable_csi_u_key_encoding = true -- Better key encoding for special keys
+-- Kitty keyboard protocol and CSI-u encoding are DISABLED on purpose:
+-- wezterm's kitty implementation is buggy (wez/wezterm#3593, #6982) and
+-- its CSI-u encoding is explicitly "not recommended" by the wezterm docs.
+-- Both schemes mis-encode arrows/PageUp/PageDown when negotiated through
+-- tmux -> nvim, breaking those keys (ghostty works because its kitty
+-- implementation is correct). xterm-compatible + modifyOtherKeys encoding
+-- is used instead, which tmux translates correctly.
+config.enable_kitty_keyboard = false
+config.enable_csi_u_key_encoding = false
 
 -- =====================================================
 -- Font Configuration (Fira Code Nerd Font)
@@ -18,7 +25,7 @@ config.font = wezterm.font("FiraCode Nerd Font", {
 })
 config.font_size = 10.0
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" } -- Enable font ligatures
-config.anti_alias_custom_block_glyphs = true
+-- config.anti_alias_custom_block_glyphs = true
 config.max_fps = 90
 
 -- =====================================================
