@@ -50,8 +50,6 @@ config.initial_cols = 120
 config.initial_rows = 40
 
 wezterm.on("update-status", function(window)
-	local gradient =
-		wezterm.color.gradient({ "#ff0000", "#00ff00", "#0000ff" }, window:active_pane().current_working_dir)
 	window:set_right_status(wezterm.format({
 		{ Text = " " .. window:active_pane().current_working_dir .. " " },
 	}))
