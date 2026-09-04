@@ -76,3 +76,40 @@ First-time setup (adopt existing files):
 ```sh
 stow --adopt -t ~ tmux zsh git wezterm kitty
 ```
+
+## System-level configs (nproc limits, etc.)
+
+The `system/` package contains configs that deploy to `/etc` via symlinks.
+This requires sudo. Run separately from user-level stow:
+
+```sh
+make stow-system
+```
+
+**What it does:**
+- Sets `nproc` (max user processes) to 65536 via PAM (`limits.d`) and systemd (`system.conf.d`, `user.conf.d`)
+- Sets `UserTasksMax=50%` in `logind.conf.d`
+- This prevents "cannot allocate memory" / "system limit" errors when spawning many goroutines, threads, or processes
+
+**To revert:**
+
+```sh
+sudo stow -v -D -t / system
+sudo rm -f /etc/systemd/system.conf.d/99-nproc.conf \
+          /etc/systemd/user.conf.d/99-nproc.conf \
+          /etc/systemd/logind.conf.d/99-nproc.conf
+sudo systemctl daemon-reload
+```
+
+**Verify the change:**
+
+The PAM limit (`ulimit -u`) takes effect on next login.
+To apply to current shell without re-login:
+
+```sh
+prlimit --pid=$$ --nproc=65536
+ulimit -u   # should show 65536
+```
+
+**Note:** The limits file uses `*` (all users). If you want user-specific limits,
+edit the deployed `/etc/security/limits.d/99-nproc.conf` after symlinking.
