@@ -8,7 +8,12 @@ alias reloadfish="exec fish"
 alias aliases="nvim ~/.config/fish/conf.d/aliases.fish"
 alias cd=z
 alias t=tmux
-alias ta="tmux attach"
+# alias ta="tmux attach"
+
+function ta
+    # Attach if server running, else start new (resurrect restores sessions).
+    tmux attach; or tmux new
+end
 
 # Tools
 alias lg="lazygit"
