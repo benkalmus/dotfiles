@@ -23,7 +23,7 @@ config.font = wezterm.font("FiraCode Nerd Font", {
 	stretch = "Normal",
 	style = "Normal",
 })
-config.font_size = 10.0
+config.font_size = 9.0
 config.harfbuzz_features = { "calt=1", "clig=1", "liga=1" } -- Enable font ligatures
 -- config.anti_alias_custom_block_glyphs = true
 config.max_fps = 90
