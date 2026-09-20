@@ -34,6 +34,7 @@ config.max_fps = 90
 config.color_scheme = "Dracula" -- Matches your Ghostty theme
 config.enable_scroll_bar = false
 config.scrollback_lines = 10000
+config.bypass_mouse_reporting_modifiers = "SHIFT" -- Shift+drag selects natively when tmux mouse wedges
 
 -- =====================================================
 -- Window Configuration
