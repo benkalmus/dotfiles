@@ -1,5 +1,5 @@
 DOTFILES := $(shell pwd)
-PACKAGES := tmux zsh git wezterm kitty fish alacritty ghostty
+PACKAGES := tmux zsh git wezterm kitty fish alacritty ghostty sunshine
 
 .PHONY: all stow unstow restow adopt clean
 
