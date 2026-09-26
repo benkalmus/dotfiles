@@ -13,7 +13,7 @@ set -g fish_escape_delay_ms 100
 set -g fish_pager_show_completions 0
 
 set -gx ASDF_DATA_DIR $HOME/.asdf
-set -gx XAUTHORITY $HOME/.Xauthority
+# set -gx XAUTHORITY $HOME/.Xauthority
 set -gx HOMEBREW_AUTO_UPDATE_SECS 86400
 set -gx OPENCODE_ENABLE_EXA 1
 set -gx EDITOR nvim
