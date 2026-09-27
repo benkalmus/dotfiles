@@ -51,9 +51,11 @@ config.initial_cols = 120
 config.initial_rows = 40
 
 wezterm.on("update-status", function(window)
-	window:set_right_status(wezterm.format({
-		{ Text = " " .. window:active_pane().current_working_dir .. " " },
-	}))
+	if window:active_pane().current_working_dir ~= nil then
+		window:set_right_status(wezterm.format({
+			{ Text = " " .. window:active_pane().current_working_dir .. " " },
+		}))
+	end
 end)
 
 -- =====================================================
