@@ -73,3 +73,20 @@ First-time setup (adopt existing files):
 ```sh
 stow --adopt -t ~ fish tmux git wezterm kitty
 ```
+
+## Tmux resurrect recovery
+
+State lives in `~/.local/share/tmux/resurrect/` (the `~/.tmux/resurrect` dir does not exist, so the XDG path is used). `last` is a symlink to the newest save.
+
+If `prefix C-r` (prefix is `C-Space`) says "Tmux resurrect file not found!", `last` is a dangling symlink. This happens when two saves start in the same second: both resolve to the same filename, one symlinks `last` to it, the other sees identical content and `rm`s it (`save.sh` `files_differ` else-branch).
+
+Repoint `last` at the newest intact save and retry:
+
+```sh
+cd ~/.local/share/tmux/resurrect
+readlink -f last        # confirm it is dangling
+ls -t tmux_resurrect_*.txt | head
+ln -fs "$(ls -t tmux_resurrect_*.txt | head -1)" last
+```
+
+Then press `prefix C-r`. Note `pane_contents.tar.gz` is overwritten by the newer failed save, so scrollback may not match the layout timestamp exactly. Layout and processes restore correctly.
