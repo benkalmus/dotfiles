@@ -1,0 +1,11 @@
+[Unit]
+Description=Inhibit suspend while SSH is active
+After=network.target
+
+[Service]
+ExecStart=%h/.config/scripts/ssh-inhibit.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -40,6 +40,12 @@
 - wireguard
 - asdf
   - `brew install asdf`
+- ssh suspend block
+  - Stowed as user service: `systemd/.config/systemd/user/ssh-inhibit.service`
+  - Script: `systemd/.config/scripts/ssh-inhibit.sh`
+  - Enable: `systemctl --user daemon-reload && systemctl --user enable --now ssh-inhibit.service`
+  - Check: `systemd-inhibit --list`
+  - Blocks `sleep:idle` only while port 22 has an active session.
 
 ## Set up
 
