@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 -- =====================================================
 -- Terminal Key Behavior
 -- =====================================================
-config.term = "wezterm" -- Report as wezterm terminal type
+config.term = "xterm-256color" -- xterm terminfo sizes nvim/tmux grid reliably
 -- Kitty keyboard protocol and CSI-u encoding are DISABLED on purpose:
 -- wezterm's kitty implementation is buggy (wez/wezterm#3593, #6982) and
 -- its CSI-u encoding is explicitly "not recommended" by the wezterm docs.
@@ -39,7 +39,7 @@ config.bypass_mouse_reporting_modifiers = "SHIFT" -- Shift+drag selects natively
 -- =====================================================
 -- Window Configuration
 -- =====================================================
-config.window_decorations = "TITLE"
+config.window_decorations = "TITLE|RESIZE"
 config.window_background_opacity = 0.95
 config.window_padding = {
 	left = 0,
@@ -47,6 +47,10 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+-- allow arbitrary size and keep window size stable across font-size changes so the grid fits instead of clipping.
+config.use_resize_increments = false
+config.adjust_window_size_when_changing_font_size = false
+config.window_content_alignment = { horizontal = "Left", vertical = "Top" }
 config.initial_cols = 120
 config.initial_rows = 40
 
