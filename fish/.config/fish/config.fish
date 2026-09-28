@@ -30,9 +30,6 @@ set -gx LD_LIBRARY_PATH /usr/local/cuda-12/lib64 $LD_LIBRARY_PATH
 # FZF
 fzf --fish | source
 
-# Zoxide — smart directory jumper
-zoxide init fish | source
-
 # Source env file
 source ~/.config/.env.fish 2>/dev/null
 
@@ -55,6 +52,9 @@ set -gx PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES 1
 
 # Brew (must run last!)
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# Zoxide — smart directory jumper
+zoxide init fish | source
 
 # oclist - OpenCode session lister
 alias oclist='/tmp/list-all-opencode-sessions/list_oc_session.sh'
