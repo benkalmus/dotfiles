@@ -127,6 +127,17 @@ config.keys = {
 		mods = "ALT",
 		action = wezterm.action.SendKey({ key = "DownArrow", mods = "ALT" }),
 	},
+	-- Forward PageUp/PageDown to tmux copy-mode instead of scrolling WezTerm.
+	{
+		key = "PageUp",
+		mods = "SHIFT",
+		action = wezterm.action.SendKey({ key = "PageUp", mods = "SHIFT" }),
+	},
+	{
+		key = "PageDown",
+		mods = "SHIFT",
+		action = wezterm.action.SendKey({ key = "PageDown", mods = "SHIFT" }),
+	},
 	-- Disable default key
 	{
 		key = "Enter",
