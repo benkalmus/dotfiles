@@ -52,3 +52,6 @@ keybind = alt+7=unbind
 keybind = alt+digit_8=unbind
 keybind = alt+8=unbind
 keybind = alt+9=unbind
+
+# Use a common TERM so remote tmux works without the ghostty terminfo entry.
+term = xterm-256color
