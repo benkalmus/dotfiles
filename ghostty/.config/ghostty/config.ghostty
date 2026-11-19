@@ -31,6 +31,10 @@ keybind = ctrl+'=unbind
 
 keybind = ctrl+enter=unbind
 
+# Forward Shift+PageUp/PageDown to tmux/nvim instead of scrolling Ghostty's buffer.
+keybind = shift+page_up=unbind
+keybind = shift+page_down=unbind
+
 keybind = alt+digit_1=unbind
 keybind = alt+1=unbind
 keybind = alt+digit_2=unbind
